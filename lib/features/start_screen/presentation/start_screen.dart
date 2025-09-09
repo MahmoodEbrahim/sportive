@@ -2,21 +2,42 @@ import 'package:flutter/material.dart';
 
 import '../../auth/presentation/view/login_screen.dart';
 import '../../auth/presentation/view/signup_screen.dart';
+
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth  = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        leading: BackButton(),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth*0.04,vertical:screenHeight*0.03 ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+             SizedBox(height: screenHeight* 0.02),
             const Text(
-              "Welcome!",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              "Welcome to Sportiva",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: screenHeight* 0.01),
+            const Text(
+              "Please login to your account or create new account to continue",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey,
+              ),
+            ),
+            Spacer(),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -24,17 +45,37 @@ class StartScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => const LoginScreen()),
                 );
               },
-              child: const Text("I already have an account"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                minimumSize: const Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: const Text(
+                "LOGIN",
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
+             SizedBox(height: screenHeight*0.01),
+            OutlinedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => const SignupScreen()),
                 );
               },
-              child: const Text("Create a new account"),
+              style: OutlinedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 50),
+                side: const BorderSide(color: Colors.green),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: const Text(
+                "CREATE ACCOUNT",
+                style: TextStyle(fontSize: 16, color: Colors.green),
+              ),
             ),
           ],
         ),
