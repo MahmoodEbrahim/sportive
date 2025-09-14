@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
-              onTap: () => Navigator.pushNamed(context, AppRoutes.settings),
+              onTap: () => Navigator.pushNamed(context, AppRoutes.setting),
             ),
             ListTile(
               leading: const Icon(Icons.info_outline),
@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
           children: [
             IconButton(onPressed: () => Navigator.pushNamed(context, AppRoutes.home), icon: const Icon(Icons.home)),
             IconButton(onPressed: () => Navigator.pushNamed(context, AppRoutes.profile), icon: const Icon(Icons.person)),
-            IconButton(onPressed: () => Navigator.pushNamed(context, AppRoutes.settings), icon: const Icon(Icons.settings)),
+            IconButton(onPressed: () => Navigator.pushNamed(context, AppRoutes.setting), icon: const Icon(Icons.settings)),
           ],
         ),
       ),

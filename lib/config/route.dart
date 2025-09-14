@@ -5,6 +5,7 @@ import 'package:sportive/features/auth/presentation/forgot/phone_verification_sc
 import 'package:sportive/features/auth/presentation/forgot/set_new_password_screen.dart';
 import 'package:sportive/features/auth/presentation/view/login_screen.dart';
 import 'package:sportive/features/auth/presentation/view/signup_screen.dart';
+import 'package:sportive/features/fields/presentation/view/fields_screen.dart';
 import 'package:sportive/features/home/presentation/view/bottom_nav_screen.dart';
 import 'package:sportive/features/home/presentation/view/home_screen.dart';
 import 'package:sportive/features/legal/presentation/view/about_screen.dart';
@@ -45,6 +46,9 @@ class AppRoutes {
   // main
   static const String bottomNav = '/main';
   static const String home = '/home';
+
+
+  static const String fields = '/fields';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -93,6 +97,10 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const BottomNavScreen());
       case home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+      case fields:
+        return MaterialPageRoute(builder: (_) =>  FieldsScreen());
+
 
       default:
         return MaterialPageRoute(
