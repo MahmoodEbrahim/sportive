@@ -5,77 +5,41 @@ class FilterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    String? selectedCity;
-    String? selectedDistrict;
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Filter Fields"),
-        backgroundColor: Colors.green,
-      ),
+      appBar: AppBar(title: const Text("Filters")),
       body: Padding(
-        padding: EdgeInsets.all(size.width * 0.05),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("City"),
             DropdownButtonFormField<String>(
-              items: ["Cairo", "Alex"].map((e) => DropdownMenuItem(
-                value: e,
-                child: Text(e),
-              )).toList(),
+              items: ["Cairo", "Giza", "Alexandria"]
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                  .toList(),
               onChanged: (v) {},
+              decoration: const InputDecoration(labelText: "City"),
             ),
-            const SizedBox(height: 15),
-            const Text("District"),
+            const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              items: ["Nasr City", "Maadi"].map((e) => DropdownMenuItem(
-                value: e,
-                child: Text(e),
-              )).toList(),
+              items: ["5-a-side", "7-a-side", "11-a-side"]
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                  .toList(),
               onChanged: (v) {},
+              decoration: const InputDecoration(labelText: "Field Type"),
             ),
-            const SizedBox(height: 15),
-            const Text("Price Range"),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: const InputDecoration(hintText: "Min"),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: TextField(
-                    decoration: const InputDecoration(hintText: "Max"),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-              ],
+            const SizedBox(height: 16),
+            RangeSlider(
+              values: const RangeValues(100, 500),
+              min: 50,
+              max: 1000,
+              divisions: 10,
+              onChanged: (v) {},
             ),
             const Spacer(),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: const Text("Clear"),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
-                    child: const Text("Apply Filters"),
-                  ),
-                ),
-              ],
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("Apply Filters"),
             )
           ],
         ),

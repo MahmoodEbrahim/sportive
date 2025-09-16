@@ -5,7 +5,12 @@ import 'package:sportive/features/auth/presentation/forgot/phone_verification_sc
 import 'package:sportive/features/auth/presentation/forgot/set_new_password_screen.dart';
 import 'package:sportive/features/auth/presentation/view/login_screen.dart';
 import 'package:sportive/features/auth/presentation/view/signup_screen.dart';
-import 'package:sportive/features/fields/presentation/view/fields_screen.dart';
+import 'package:sportive/features/fields/presentation/view/booking_screen.dart';
+import 'package:sportive/features/fields/presentation/view/booking_success_screen.dart';
+import 'package:sportive/features/fields/presentation/view/confirm_booking_screen.dart';
+import 'package:sportive/features/fields/presentation/view/field_details_screen.dart';
+import 'package:sportive/features/fields/presentation/view/fields_list_screen.dart';
+import 'package:sportive/features/fields/presentation/view/filter_screen.dart';
 import 'package:sportive/features/home/presentation/view/bottom_nav_screen.dart';
 import 'package:sportive/features/home/presentation/view/home_screen.dart';
 import 'package:sportive/features/legal/presentation/view/about_screen.dart';
@@ -48,7 +53,15 @@ class AppRoutes {
   static const String home = '/home';
 
 
+// داخل AppRoutes
   static const String fields = '/fields';
+  static const String filter = '/filter';
+  static const String fieldDetails = '/fieldDetails';
+  static const String booking = '/booking';
+  static const String confirmBooking = '/confirmBooking';
+  static const String bookingSuccess = '/bookingSuccess';
+
+
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -99,7 +112,17 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       case fields:
-        return MaterialPageRoute(builder: (_) =>  FieldsScreen());
+        return MaterialPageRoute(builder: (_) => const FieldsListScreen());
+      case filter:
+        return MaterialPageRoute(builder: (_) => const FilterScreen());
+      case fieldDetails:
+        return MaterialPageRoute(builder: (_) => const FieldDetailsScreen());
+      case booking:
+        return MaterialPageRoute(builder: (_) => const BookingScreen());
+      case confirmBooking:
+        return MaterialPageRoute(builder: (_) => const ConfirmBookingScreen());
+      case bookingSuccess:
+        return MaterialPageRoute(builder: (_) => const BookingSuccessScreen());
 
 
       default:
