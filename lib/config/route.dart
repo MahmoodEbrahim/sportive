@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sportive/core/di/injection.dart';
 import 'package:sportive/features/auth/presentation/forgot/forgot_password_screen.dart';
 import 'package:sportive/features/auth/presentation/forgot/password_success_screen.dart';
 import 'package:sportive/features/auth/presentation/forgot/phone_verification_screen.dart';
 import 'package:sportive/features/auth/presentation/forgot/set_new_password_screen.dart';
 import 'package:sportive/features/auth/presentation/view/login_screen.dart';
 import 'package:sportive/features/auth/presentation/view/signup_screen.dart';
+import 'package:sportive/features/custom_bottom_navigation/presentation/view/custom_bottom_navigation_view.dart';
+import 'package:sportive/features/custom_bottom_navigation/presentation/view_model/custom_bottom_navigation_cubit.dart';
 import 'package:sportive/features/fields/presentation/view/booking_screen.dart';
 import 'package:sportive/features/fields/presentation/view/booking_success_screen.dart';
 import 'package:sportive/features/fields/presentation/view/confirm_booking_screen.dart';
 import 'package:sportive/features/fields/presentation/view/field_details_screen.dart';
 import 'package:sportive/features/fields/presentation/view/fields_list_screen.dart';
 import 'package:sportive/features/fields/presentation/view/filter_screen.dart';
-import 'package:sportive/features/home/presentation/view/bottom_nav_screen.dart';
-import 'package:sportive/features/home/presentation/view/home_screen.dart';
 import 'package:sportive/features/legal/presentation/view/about_screen.dart';
 import 'package:sportive/features/legal/presentation/view/contact_screen.dart';
 import 'package:sportive/features/legal/presentation/view/terms_screen.dart';
@@ -49,19 +51,16 @@ class AppRoutes {
   static const String about = '/about';
 
   // main
-  static const String bottomNav = '/main';
+  static const String bottomNav = '/bottomNav';
   static const String home = '/home';
 
-
-// داخل AppRoutes
+  // fields
   static const String fields = '/fields';
   static const String filter = '/filter';
   static const String fieldDetails = '/fieldDetails';
   static const String booking = '/booking';
   static const String confirmBooking = '/confirmBooking';
   static const String bookingSuccess = '/bookingSuccess';
-
-
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -105,12 +104,7 @@ class AppRoutes {
       case about:
         return MaterialPageRoute(builder: (_) => const AboutScreen());
 
-    // main / bottom nav
-      case bottomNav:
-        return MaterialPageRoute(builder: (_) => const BottomNavScreen());
-      case home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
-
+    // fields
       case fields:
         return MaterialPageRoute(builder: (_) => const FieldsListScreen());
       case filter:
@@ -123,6 +117,14 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const ConfirmBookingScreen());
       case bookingSuccess:
         return MaterialPageRoute(builder: (_) => const BookingSuccessScreen());
+      case AppRoutes.home:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt.get<CustomsBottomNavigationCubit>(),
+            child: const CustomBottomNavigationView(),
+          ),
+        );
+
 
 
       default:

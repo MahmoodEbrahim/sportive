@@ -15,9 +15,15 @@ class ProfileScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: sw * 0.06, vertical: sh * 0.02),
         child: Column(
           children: [
-            CircleAvatar(radius: sw * 0.12, backgroundImage: AssetImage('assets/images/profile_placeholder.png')),
+            CircleAvatar(
+              radius: sw * 0.12,
+              backgroundImage: const AssetImage('assets/images/profile_placeholder.png'),
+            ),
             SizedBox(height: sh * 0.02),
-            Text('Ahmed Khaled', style: TextStyle(fontSize: sw * 0.06, fontWeight: FontWeight.bold)),
+            Text(
+              'Ahmed Khaled',
+              style: TextStyle(fontSize: sw * 0.06, fontWeight: FontWeight.bold),
+            ),
             SizedBox(height: sh * 0.02),
             ListTile(
               leading: const Icon(Icons.person),
@@ -39,17 +45,6 @@ class ProfileScreen extends StatelessWidget {
               title: const Text('Logout'),
               onTap: () => Navigator.pushNamed(context, AppRoutes.logoutConfirm),
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: sh * 0.08,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(onPressed: () => Navigator.pushNamed(context, AppRoutes.home), icon: const Icon(Icons.home)),
-            IconButton(onPressed: () => Navigator.pushNamed(context, AppRoutes.profile), icon: const Icon(Icons.person)),
-            IconButton(onPressed: () => Navigator.pushNamed(context, AppRoutes.setting), icon: const Icon(Icons.settings)),
           ],
         ),
       ),
